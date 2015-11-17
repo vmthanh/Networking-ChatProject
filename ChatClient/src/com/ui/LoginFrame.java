@@ -39,8 +39,6 @@ public class LoginFrame extends Frame {
 	public JButton btnLogin;
 	public JButton btnSignUp;
 	public JButton btnConnect;
-	private MessageDigest md;
-	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -96,8 +94,8 @@ public class LoginFrame extends Frame {
 			public void windowDeactivated(WindowEvent e) {
 			}
 		});
-		//this.hist = new History(historyFile);
-		md = MessageDigest.getInstance("MD5");
+		// this.hist = new History(historyFile);
+
 	}
 
 	private void iniComponent() {
@@ -248,21 +246,17 @@ public class LoginFrame extends Frame {
 		this.username = usernameField.getText();
 		this.password = passwordField.getText();
 		if (!username.isEmpty() && !password.isEmpty()) {
-			
+
 			ClientListFrame clientListFrame = new ClientListFrame(client, clientThread);
 			clientListFrame.username = username;
 			clientListFrame.password = password;
 			clientListFrame.port = port;
 			clientListFrame.serverAddr = serverAddr;
-			//clientListFrame.hist = hist;
 			clientListFrame.show();
-			
-			String hashUsername = hashMD5(username);
 			String hashPassword = hashMD5(password);
-			client.send(new Message("login",hashUsername,hashPassword, "SERVER"));
-			//client.send(new Message("login",username,password, "SERVER"));
+			client.send(new Message("login", username, hashPassword, "SERVER"));
 			this.dispose();
-			
+
 		}
 	}
 
@@ -270,15 +264,16 @@ public class LoginFrame extends Frame {
 		username = usernameField.getText();
 		password = passwordField.getText();
 		if (!username.isEmpty() && !password.isEmpty()) {
-			String hashUsername = hashMD5(username);
+
 			String hashPassword = hashMD5(password);
-			client.send(new Message("signup", hashUsername, hashPassword, "SERVER"));
+			client.send(new Message("signup", username, hashPassword, "SERVER"));
 			usernameField.setText("");
 			passwordField.setText("");
+
 		}
 	}
-	
-	public String hashMD5(String input){
+
+	public String hashMD5(String input) {
 		MessageDigest m;
 		String hashtext = "";
 		try {
@@ -286,19 +281,20 @@ public class LoginFrame extends Frame {
 			m.reset();
 			m.update(input.getBytes());
 			byte[] digest = m.digest();
-			BigInteger bigInt = new BigInteger(1,digest);
+			BigInteger bigInt = new BigInteger(1, digest);
 			hashtext = bigInt.toString(16);
-			// Now we need to zero pad it if you actually want the full 32 chars.
-			while(hashtext.length() < 32 ){
-			  hashtext = "0"+hashtext;
+			// Now we need to zero pad it if you actually want the full 32
+			// chars.
+			while (hashtext.length() < 32) {
+				hashtext = "0" + hashtext;
 			}
-			
+
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return hashtext;
-		
+
 	}
 
 }

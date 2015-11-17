@@ -96,14 +96,27 @@ public class SocketClient implements Runnable {
 					}
 
 				} else if (msg.type.equals("signout")) {
+					ClientListFrame clientListFrame = (ClientListFrame) ui;
+					if (msg.content.equals(clientListFrame.username)) {
+						for (int i = 1; i < clientListFrame.model.size(); i++) {
+							clientListFrame.model.removeElementAt(i);
+						}
+
+						clientListFrame.clientThread.stop();
+					}else{
+						 clientListFrame.model.removeElement(msg.content);
+					}
 
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
 				keepRunning = false;
 				// code for UI
-
-				ui.clientThread.stop();
+				ClientListFrame clientListFrame = (ClientListFrame) ui;
+				for (int i = 1; i < clientListFrame.model.size(); i++) {
+					clientListFrame.model.removeElementAt(i);
+				}
+				clientListFrame.clientThread.stop();
 				System.out.println("Exception SocketClient run()");
 				e.printStackTrace();
 			}

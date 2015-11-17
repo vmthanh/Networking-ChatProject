@@ -3,6 +3,7 @@ package com.ui;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.net.Socket;
+import java.security.NoSuchAlgorithmException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -26,12 +27,21 @@ import javax.swing.JTextField;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 
 import com.socket.Message;
 import com.socket.SocketClient;
+
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ClientListFrame extends Frame {
 
@@ -40,6 +50,9 @@ public class ClientListFrame extends Frame {
 	public JList listChatLst;
 	public JTextField textField;
 	public JTextArea chatArea;
+	private JMenuBar menuBar;
+	private JMenu mnAccount;
+	private JMenuItem mntmExit;
 
 	public ClientListFrame() {
 		initComponent();
@@ -55,9 +68,67 @@ public class ClientListFrame extends Frame {
 		model.addElement("All");
 	}
 
+	public void sendMessage(Message msg) {
+		client.send(msg);
+	}
+
 	private void initComponent() {
+
+		this.addWindowListener(new WindowListener() {
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					client.send(new Message("message", username, ".bye", "SERVER"));
+					clientThread.stop();
+				} catch (Exception ex) {
+				}
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+			}
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+			}
+		});
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 342);
+
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+
+		mnAccount = new JMenu("Account");
+		menuBar.add(mnAccount);
+
+		mntmExit = new JMenuItem("Logout ");
+		mntmExit.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				LogOutAccount(e);
+
+			}
+		});
+		mnAccount.add(mntmExit);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -119,5 +190,20 @@ public class ClientListFrame extends Frame {
 			textField.setText("");
 			this.client.send(new Message("message", username, msg, recipient));
 		}
+	}
+
+	private void LogOutAccount(MouseEvent arg0) {
+		client.send(new Message("message", username, ".bye", "SERVER"));
+		clientThread.stop();
+		LoginFrame loginFrame;
+		try {
+			loginFrame = new LoginFrame();
+			loginFrame.show();
+			this.dispose();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
