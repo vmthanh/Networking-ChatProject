@@ -155,72 +155,60 @@ public class LoginFrame extends Frame {
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane
-				.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						gl_contentPane
-								.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(lblHostAddress)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addGroup(
-										gl_contentPane
-												.createParallelGroup(Alignment.LEADING)
-												.addGroup(
-														gl_contentPane.createSequentialGroup()
-																.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(ComponentPlacement.RELATED)
-																.addComponent(btnSignUp, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
-												.addGroup(
-														gl_contentPane
-																.createSequentialGroup()
-																.addComponent(hostField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(ComponentPlacement.RELATED)
-																.addGroup(
-																		gl_contentPane
-																				.createParallelGroup(Alignment.LEADING)
-																				.addComponent(lblNewLabel)
-																				.addGroup(
-																						gl_contentPane
-																								.createSequentialGroup()
-																								.addComponent(lblHostPost)
-																								.addPreferredGap(ComponentPlacement.UNRELATED)
-																								.addComponent(portField, GroupLayout.PREFERRED_SIZE,
-																										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-																								.addPreferredGap(ComponentPlacement.UNRELATED)
-																								.addComponent(btnConnect)))))
-								.addContainerGap(26, Short.MAX_VALUE))
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(176).addComponent(lblNewLabel_1).addContainerGap(202, Short.MAX_VALUE))
-				.addGroup(
-						gl_contentPane
-								.createSequentialGroup()
-								.addGap(147)
-								.addGroup(
-										gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(passwordField, Alignment.TRAILING)
-												.addComponent(usernameField, Alignment.TRAILING, 114, 114, Short.MAX_VALUE))
-								.addContainerGap(163, Short.MAX_VALUE)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
-				gl_contentPane
-						.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(
-								gl_contentPane
-										.createParallelGroup(Alignment.LEADING)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(Alignment.BASELINE)
-														.addComponent(hostField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblHostPost)
-														.addComponent(portField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE).addComponent(btnConnect)).addComponent(lblHostAddress))
-						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lblNewLabel).addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(usernameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel_1).addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addGap(18)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnLogin).addComponent(btnSignUp))
-						.addContainerGap(74, Short.MAX_VALUE)));
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblHostAddress)
+						.addComponent(lblNewLabel))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(usernameField, Alignment.LEADING)
+						.addComponent(hostField, Alignment.LEADING))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblHostPost)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(portField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblNewLabel_1)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnSignUp, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+								.addComponent(passwordField))))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnConnect)
+					.addContainerGap(142, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(hostField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblHostPost)
+							.addComponent(portField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnConnect))
+						.addComponent(lblHostAddress))
+					.addGap(31)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(usernameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_1)
+								.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(28)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnLogin)
+								.addComponent(btnSignUp)))
+						.addComponent(lblNewLabel))
+					.addContainerGap(161, Short.MAX_VALUE))
+		);
 		contentPane.setLayout(gl_contentPane);
 	}
 

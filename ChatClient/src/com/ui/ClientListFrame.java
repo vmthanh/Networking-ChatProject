@@ -82,10 +82,16 @@ public class ClientListFrame extends Frame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
+				client.send(new Message("message", username, ".bye", "SERVER"));
+				clientThread.stop();
+				LoginFrame loginFrame;
 				try {
-					client.send(new Message("message", username, ".bye", "SERVER"));
-					clientThread.stop();
-				} catch (Exception ex) {
+					loginFrame = new LoginFrame();
+					loginFrame.show();
+					dispose();
+				} catch (NoSuchAlgorithmException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 
@@ -136,7 +142,7 @@ public class ClientListFrame extends Frame {
 		listChatLst = new JList();
 		listChatLst.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
-				chatArea.setText("");
+				// chatArea.setText("");
 			}
 		});
 		model = new DefaultListModel();

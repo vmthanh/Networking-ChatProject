@@ -62,7 +62,6 @@ public class SocketClient implements Runnable {
 
 					} else {
 						JOptionPane.showMessageDialog(null, "Login failed", "Error", JOptionPane.INFORMATION_MESSAGE);
-
 					}
 
 				} else if (msg.type.equals("test")) {
@@ -88,7 +87,6 @@ public class SocketClient implements Runnable {
 					}
 
 				} else if (msg.type.equals("signup")) {
-					LoginFrame loginFrame = (LoginFrame) ui;
 					if (msg.content.equals("TRUE")) {
 						JOptionPane.showMessageDialog(null, "Signup successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
 					} else {
@@ -103,8 +101,8 @@ public class SocketClient implements Runnable {
 						}
 
 						clientListFrame.clientThread.stop();
-					}else{
-						 clientListFrame.model.removeElement(msg.content);
+					} else {
+						clientListFrame.model.removeElement(msg.content);
 					}
 
 				}
