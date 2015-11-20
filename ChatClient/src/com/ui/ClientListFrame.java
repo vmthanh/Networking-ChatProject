@@ -82,17 +82,7 @@ public class ClientListFrame extends Frame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				client.send(new Message("message", username, ".bye", "SERVER"));
-				clientThread.stop();
-				LoginFrame loginFrame;
-				try {
-					loginFrame = new LoginFrame();
-					loginFrame.show();
-					dispose();
-				} catch (NoSuchAlgorithmException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				
 			}
 
 			@Override
