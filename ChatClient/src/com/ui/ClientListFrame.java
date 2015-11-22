@@ -82,6 +82,8 @@ public class ClientListFrame extends Frame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
+				client.send(new Message("message", username, ".bye", "SERVER"));
+				clientThread.stop();
 				
 			}
 
